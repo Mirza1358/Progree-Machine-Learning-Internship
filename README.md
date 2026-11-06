@@ -78,14 +78,14 @@ To eliminate data leakage, all preprocessing steps were integrated into a unifie
 ### Models & Results
 Evaluated on an 80/20 train/test split (16,512 training / 4,128 test samples) using $R^2$ and Root Mean Squared Error (RMSE):
 
-| Model | Regularization ($lpha$) | $R^2$ Score | RMSE (USD) |
+| Model | Regularization ($\alpha$) | $R^2$ Score | RMSE (USD) |
 |---|:---:|:---:|:---:|
 | **Linear Regression** | - | **0.6257** | **$70,031.49** |
-| **Ridge Regression** | $lpha = 1.0$ | **0.6257** | **$70,038.41** |
-| **Ridge Regression** | $lpha = 10.0$ | **0.6255** | **$70,055.89** |
+| **Ridge Regression** | $\alpha = 1.0$ | **0.6257** | **$70,038.41** |
+| **Ridge Regression** | $\alpha = 10.0$ | **0.6255** | **$70,055.89** |
 
 ### Key Takeaways
-- **Strongest Predictor:** `median_income` exhibits the highest correlation ($pprox 0.688$) with median house values.
+- **Strongest Predictor:** `median_income` exhibits the highest correlation ($\approx 0.688$) with median house values.
 - **Location Premium:** Proximity to water (`<1H OCEAN`, `NEAR BAY`, `NEAR OCEAN`) corresponds to substantially higher valuations compared to `INLAND`.
 - **Regularization Analysis:** Due to the large sample size relative to the feature count, Ridge regularization yielded comparable scores to standard OLS, effectively constraining coefficients without underfitting.
 
@@ -96,7 +96,7 @@ Evaluated on an 80/20 train/test split (16,512 training / 4,128 test samples) us
 ### Objective & Dataset
 - **Objective:** Design, implement, and train a Convolutional Neural Network (CNN) from scratch using TensorFlow/Keras to classify real-world color images into 10 distinct classes.
 - **Dataset:** CIFAR-10 Benchmark Dataset.
-  - **Scale:** 60,000 $32 	imes 32$ RGB images (50,000 training, 10,000 testing).
+  - **Scale:** 60,000 $32 \times 32$ RGB images (50,000 training, 10,000 testing).
   - **Balance:** Perfectly balanced (6,000 images per class).
   - **Classes:** `airplane`, `automobile`, `bird`, `cat`, `deer`, `dog`, `frog`, `horse`, `ship`, `truck`.
 
@@ -108,11 +108,11 @@ A deep convolutional architecture was engineered with **403,882 trainable parame
    - `RandomZoom(0.1)`
    - `RandomTranslation(0.1, 0.1)`
 2. **Feature Extraction Blocks:**
-   - **Block 1:** `Conv2D(32, 3x3, ReLU)` + `BatchNormalization` $	o$ `Conv2D(32, 3x3, ReLU)` $	o$ `MaxPooling2D(2x2)` $	o$ `Dropout(0.25)`
-   - **Block 2:** `Conv2D(64, 3x3, ReLU)` + `BatchNormalization` $	o$ `Conv2D(64, 3x3, ReLU)` $	o$ `MaxPooling2D(2x2)` $	o$ `Dropout(0.25)`
-   - **Block 3:** `Conv2D(128, 3x3, ReLU)` + `BatchNormalization` $	o$ `MaxPooling2D(2x2)` $	o$ `Dropout(0.30)`
+   - **Block 1:** `Conv2D(32, 3x3, ReLU)` + `BatchNormalization` $\to$ `Conv2D(32, 3x3, ReLU)` $\to$ `MaxPooling2D(2x2)` $\to$ `Dropout(0.25)`
+   - **Block 2:** `Conv2D(64, 3x3, ReLU)` + `BatchNormalization` $\to$ `Conv2D(64, 3x3, ReLU)` $\to$ `MaxPooling2D(2x2)` $\to$ `Dropout(0.25)`
+   - **Block 3:** `Conv2D(128, 3x3, ReLU)` + `BatchNormalization` $\to$ `MaxPooling2D(2x2)` $\to$ `Dropout(0.30)`
 3. **Classification Head:**
-   - `Flatten()` $	o$ `Dense(128, ReLU)` $	o$ `Dropout(0.50)` $	o$ `Dense(10, Softmax)`
+   - `Flatten()` $\to$ `Dense(128, ReLU)` $\to$ `Dropout(0.50)` $\to$ `Dense(10, Softmax)`
 
 ### Training & Performance
 - **Optimization:** Adam optimizer with `SparseCategoricalCrossentropy` loss over 30 epochs.
